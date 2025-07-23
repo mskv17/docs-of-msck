@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MSKV Server Creator Kit Documentation</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>MSKV Server Creator Kit</h1>
+        <p>A lightweight Node.js server framework with routing, middleware, static file serving, and more.</p>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="#download">Download</a></li>
+            <li><a href="#getting-started">Getting Started</a></li>
+            <li><a href="#features">Features</a></li>
+            <li><a href="#api">API Reference</a></li>
+            <li><a href="#examples">Examples</a></li>
+        </ul>
+    </nav>
+    <main>
+        <section id="download">
+            <h2>Download &amp; Install</h2>
+            <p>Install <strong>mskv-server-creater-kit</strong> via npm:</p>
+            <pre><code>npm install mskv-server-creater-kit</code></pre>
+            <p>Or clone from GitHub:</p>
+            <pre><code>git clone https://github.com/mskv17/mskv-server-creater-kit.git</code></pre>
+        </section>
+        <section id="getting-started">
+            <h2>Getting Started</h2>
+            <pre><code>const app = require('./index')();
+app.listen(3000);
+</code></pre>
+        </section>
+        <section id="features">
+            <h2>Features</h2>
+            <ul>
+                <li>Routing (GET, POST, PUT, DELETE)</li>
+                <li>Router grouping</li>
+                <li>Middleware support</li>
+                <li>Static file serving</li>
+                <li>CORS support</li>
+                <li>File system utilities</li>
+            </ul>
+        </section>
+        <section id="api">
+            <h2>API Reference</h2>
+            <h3>ServerCreater Methods</h3>
+            <ul>
+                <li><strong>get(route, callback)</strong>: Register a GET route</li>
+                <li><strong>post(route, callback)</strong>: Register a POST route</li>
+                <li><strong>put(route, callback)</strong>: Register a PUT route</li>
+                <li><strong>delete(route, callback)</strong>: Register a DELETE route</li>
+                <li><strong>router(prefix, callback)</strong>: Group routes under a prefix</li>
+                <li><strong>use(middleware)</strong>: Add middleware</li>
+                <li><strong>static(route, folder)</strong>: Serve static files</li>
+                <li><strong>cors(urls)</strong>: Enable CORS</li>
+                <li><strong>listen(port, callback)</strong>: Start the server</li>
+            </ul>
+            <h3>Request Object</h3>
+            <ul>
+                <li><strong>url</strong>: Request URL</li>
+                <li><strong>body()</strong>: Async function to get request body</li>
+                <li><strong>method</strong>: HTTP method</li>
+                <li><strong>headers</strong>: Request headers</li>
+                <li><strong>query</strong>: Query parameters</li>
+                <li><strong>cookies</strong>: Cookies</li>
+            </ul>
+            <h3>Response Object</h3>
+            <ul>
+                <li><strong>send(string, status)</strong>: Send plain text response</li>
+                <li><strong>sendFile(path, file, status)</strong>: Send file response</li>
+                <li><strong>json(data, status)</strong>: Send JSON response</li>
+                <li><strong>redirect(route, status)</strong>: Redirect response</li>
+                <li><strong>header(header)</strong>: Set custom header</li>
+                <li><strong>cookie(name, value, options)</strong>: Set cookie</li>
+            </ul>
+        </section>
+        <section id="examples">
+            <h2>Examples</h2>
+            <h3>Basic Server</h3>
+            <pre><code>const app = require('./index')();
+app.get('/', (req, res) => {
+    res.send('Hello World!');
+});
+app.listen(3000);
+</code></pre>
+            <h3>Router Grouping</h3>
+            <pre><code>app.router('/api', (router) => {
+    router.get('/users', (req, res) => {
+        res.json([{id:1, name:'Alice'}]);
+    });
+});
+</code></pre>
+            <h3>Static Files</h3>
+            <pre><code>app.static('/public', './public');
+</code></pre>
+            <h3>Middleware</h3>
+            <pre><code>app.use((req, res, next) => {
+    console.log(req.method, req.url);
+    next();
+});
+</code></pre>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2025 MSKV Server Creator Kit</p>
+    </footer>
+</body>
+</html>
